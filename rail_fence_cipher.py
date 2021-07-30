@@ -1,5 +1,5 @@
-# author:
-# date:
+# author: Lynijahhhhhhh
+# date:07-30-2021
 
 # difficulty: hard
 
@@ -61,3 +61,39 @@
 #
 # WRITE CODE BELOW #
 
+string = input("Enter string: ")
+step = int(input("Enter steps: "))
+
+enc=[[" " for i in range(len(string))] for j in range(step)]
+print(enc) 
+#used list comprehension for initializing the list.
+
+flag=0
+row=0
+#The character index will be the same as the column number in the grid. So we only need to determine the row number now. If flag=0, then we need to continue in the downward direction, and if flag=1, then travel in an upward direction. So, if flag=0, increment row number, and if flag=1, decrement row number.
+
+for i in range(len(string)):
+  enc[row][i]=string[i]
+  if row==0:
+    flag=0
+  elif row==step-1:
+    flag=1
+  if flag==0:
+    row+=1
+  else:
+    row-=1
+#I have filled in our plaintext characters into my grid.  
+
+for i in range(step):
+  print("".join(enc[i]))
+#to read my grid row by row and eliminate the spaces between each letter in a row we will parse through each character in every row and append all the characters, which are not spaces, to an initially empty list.
+ct=[]
+for i in range(step):
+    for j in range(len(string)):
+        if enc[i][j]!=' ':
+            ct.append(enc[i][j])
+
+cipher="".join(ct)
+print("Cipher Text: ",cipher)
+
+#Turn ct into a string and print and BAHM
